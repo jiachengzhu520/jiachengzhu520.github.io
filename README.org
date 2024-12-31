@@ -1,0 +1,9 @@
+#+LATEX_CLASS: ramsay-org-article
+#+LATEX_CLASS_OPTIONS: [oneside,A4paper,12pt]
+#+AUTHOR: Ramsay Leung
+#+EMAIL: ramsayleung@gmail.com
+#+DATE: 2022-02-22T21:35:59
+* Description
+  The blog is migrated from the original self-hosted [[https://github.com/ramsayleung/blog][blog]] which was interesting and delightful to build something from scratch.
+
+  There is Ramsay’ personal blog, where he writes about life, software enginering, distributed system and thought.
