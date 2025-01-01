@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "来自博主的一封信——致每一个我们"
+title: "2025年第一封博客"
 date:   2025-01-01
 tags: [notice,more]
 comments: true
