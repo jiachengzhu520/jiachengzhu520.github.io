@@ -726,4 +726,320 @@ footer {
 @import "highlights";
 //@import "gitalk";
 
+// Dark mode support
+[data-theme="dark"] {
+  body {
+    background-color: $dark-background-color;
+    color: $dark-base-color;
+  }
+  
+  .wrapper-sidebar {
+    background-color: $dark-background-color;
+    border-right-color: $dark-divider-color;
+  }
+  
+  .site-info {
+    .site-name {
+      color: $dark-base-color;
+    }
+  }
+  
+  .site-description {
+    color: $dark-base-lighten-color;
+  }
+  
+  a {
+    color: $dark-link-color;
+    
+    &:hover, &:active {
+      color: $dark-link-lighten-color;
+      background-color: $dark-link-bghv-color;
+    }
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: $dark-base-color;
+  }
+  
+  p {
+    color: $dark-text-color;
+  }
+  
+  hr {
+    border-top-color: $dark-divider-color;
+  }
+  
+  ul > li:before {
+    color: $dark-base-lighten-color;
+  }
+  
+  ol > li:before {
+    color: $dark-base-lighten-color;
+  }
+  
+  table {
+    border-color: $dark-table-border-color;
+  }
+  
+  td, th {
+    border-color: $dark-table-border-color;
+  }
+  
+  tbody tr:nth-child(odd) td,
+  tbody tr:nth-child(odd) th {
+    background-color: $dark-table-background-color;
+  }
+  
+  blockquote {
+    color: $dark-blockquote-color;
+    border-left-color: $dark-blockquote-border-color;
+  }
+  
+  img {
+    filter: brightness(0.9) contrast(1.1);
+  }
+  
+  .wrapper-content {
+    background-color: $dark-background-color;
+  }
+  
+  .posts > .post {
+    border-bottom-color: $dark-divider-color;
+  }
+  
+  .date {
+    color: $dark-base-lighten-color;
+  }
+  
+  .posts .tag li > a {
+    color: $dark-base-color;
+    background-color: $dark-tag-index-label-background-color;
+    
+    &:hover {
+      color: $dark-link-color;
+      background-color: $dark-link-bghv-color;
+    }
+  }
+  
+  .pagination {
+    border-top-color: $dark-divider-color;
+    
+    > .prev a,
+    > .next a {
+      color: $dark-base-lighten-color;
+      border-color: $dark-divider-color;
+      background-color: $dark-background-color;
+      
+      &:hover, &:focus {
+        color: $dark-link-lighten-color;
+        border-color: $dark-link-lighten-color;
+        background-color: $dark-link-bghv-color;
+      }
+    }
+  }
+  
+  .tags > .label > li > a {
+    color: $dark-base-color;
+    background-color: $dark-tag-index-label-background-color;
+    
+    &:hover {
+      background-color: $dark-link-bghv-color;
+    }
+    
+    span.count {
+      background-color: $dark-tag-index-count-background-color;
+    }
+  }
+  
+  .tags > .tag a {
+    color: $dark-base-color;
+  }
+  
+  .tags > .tag time {
+    color: $dark-base-lighten-color;
+  }
+  
+  .wrapper-footer-desktop {
+    border-top-color: $dark-footer-border-color;
+    background-color: $dark-footer-background-color;
+  }
+  
+  .wrapper-footer-mobile {
+    background-color: $dark-footer-background-color;
+    border-top-color: $dark-footer-border-color;
+  }
+  
+  footer p {
+    color: $dark-base-lighten-color;
+  }
+  
+  .svg-icon svg {
+    fill: $dark-base-lighten-color;
+    
+    &:hover {
+      fill: $dark-link-lighten-color;
+    }
+  }
+  
+  .toc {
+    background-color: $dark-background-color;
+    border-right-color: $dark-divider-color;
+  }
+  
+  ::-moz-selection {
+    background: $dark-selection-background-color;
+  }
+  
+  ::selection {
+    background: $dark-selection-background-color;
+  }
+  
+  .search-container input {
+    background-color: $dark-background-lighten-color;
+    color: $dark-base-color;
+    border-color: $dark-divider-color;
+  }
+  
+  .archive h2 {
+    color: $dark-base-color;
+    border-bottom-color: $dark-divider-color;
+  }
+  
+  .archive h3 {
+    color: $dark-base-lighten-color;
+  }
+  
+  .archive .post-list li {
+    border-bottom-color: $dark-divider-color;
+  }
+  
+  .archive .post-date {
+    color: $dark-base-lighten-color;
+  }
+  
+  .archive .post-title {
+    color: $dark-base-color;
+  }
+  
+  .archive .post-tags .tag {
+    color: $dark-base-color;
+    background-color: $dark-tag-index-label-background-color;
+  }
+  
+  .dark-mode-toggle {
+    background-color: $dark-background-color;
+    color: $dark-base-color;
+    border-color: $dark-divider-color;
+    
+    &:hover {
+      background-color: $dark-link-bghv-color;
+    }
+  }
+}
+
+// Fallback for media query
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) {
+    body {
+      background-color: $dark-background-color;
+      color: $dark-base-color;
+    }
+    
+    .wrapper-sidebar {
+      background-color: $dark-background-color;
+      border-right-color: $dark-divider-color;
+    }
+    
+    .site-info .site-name {
+      color: $dark-base-color;
+    }
+    
+    .site-description {
+      color: $dark-base-lighten-color;
+    }
+    
+    a {
+      color: $dark-link-color;
+      
+      &:hover, &:active {
+        color: $dark-link-lighten-color;
+        background-color: $dark-link-bghv-color;
+      }
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+      color: $dark-base-color;
+    }
+    
+    p {
+      color: $dark-text-color;
+    }
+    
+    hr {
+      border-top-color: $dark-divider-color;
+    }
+    
+    .posts > .post {
+      border-bottom-color: $dark-divider-color;
+    }
+    
+    .date {
+      color: $dark-base-lighten-color;
+    }
+    
+    .pagination {
+      border-top-color: $dark-divider-color;
+    }
+    
+    .wrapper-footer-desktop {
+      border-top-color: $dark-footer-border-color;
+      background-color: $dark-footer-background-color;
+    }
+    
+    .wrapper-footer-mobile {
+      background-color: $dark-footer-background-color;
+      border-top-color: $dark-footer-border-color;
+    }
+    
+    footer p {
+      color: $dark-base-lighten-color;
+    }
+  }
+}
+
+// Dark mode toggle button
+.dark-mode-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  background-color: $background-color;
+  color: $base-color;
+  border: 1px solid $divider-color;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  
+  &:hover {
+    background-color: $link-bghv-color;
+    transform: scale(1.05);
+  }
+  
+  svg {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+  }
+  
+  &:hover svg {
+    transform: rotate(15deg);
+  }
+}
+
 

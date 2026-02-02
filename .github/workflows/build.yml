@@ -1,7 +1,10 @@
-name: Build and Test
+name: Build and Deploy
 
 on:
   push:
+    branches:
+      - main
+  pull_request:
     branches:
       - main
 
@@ -11,20 +14,65 @@ jobs:
 
     steps:
     - name: Checkout Repository
-      uses: actions/checkout@v3
-      
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    
+    - name: Setup Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.2'
+        bundler-cache: true
+    
     - name: Setup Node.js environment
       uses: actions/setup-node@v4.0.1
       with:
         node-version: 20
-        
-    - run: npm install -g bats
+        cache: 'npm'
     
-    - run: bats -v
-      
+    - name: Install dependencies
+      run: |
+        gem install bundler
+        bundle install
+    
+    - name: Build site
+      run: bundle exec jekyll build
+    
+    - name: Test site
+      run: |
+        gem install html-proofer
+        bundle exec htmlproofer _site --only-4xx --check-favicon --check-html
+    
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4.3.0
       with:
         name: 'my-blog'
         path: '_site'
-        
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    
+    - name: Download build artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: 'my-blog'
+        path: '_site'
+    
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./_site
+        publish_branch: gh-pages
+        force_orphan: true
+        user_name: 'github-actions[bot]'
+        user_email: 'github-actions[bot]@users.noreply.github.com'
+

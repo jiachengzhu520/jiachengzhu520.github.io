@@ -11,6 +11,8 @@ navigation:
     url: /about
   - name: 分类
     url: /tags
+  - name: 归档
+    url: /archive
 
 paginate: 8
 
@@ -47,7 +49,7 @@ kramdown:
 
 # Set the Sass partials directory, as we're using @imports
 sass:
-  style: :expanded # You might prefer to minify using :compressed
+  style: :compressed # Minify CSS for better performance
 
 # Use the following plug-ins
 plugins:

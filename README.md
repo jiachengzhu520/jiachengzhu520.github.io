@@ -5,3 +5,9 @@
 - [语音塑造](/2025-1-1-second.md)
 - [大脑内部](https://1000h.org/in-the-brain/01-inifinite.html)
 - [自我训练](https://1000h.org/self-training/00-intro.html)
+
+
+/Users/wenggf/.gem/ruby/2.6.0/bin/bundle install && /Users/wenggf/.gem/ruby/2.6.0/bin/bundle exec jekyll serve
+
+<!-- 本地跑服务  指令    -->
+/Users/wenggf/.gem/ruby/2.6.0/bin/bundle exec jekyll serve

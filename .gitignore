@@ -1,3 +1,15 @@
 # jekyll local file
 .jekyll*
 _site
+
+# bundler
+.bundle/
+vendor/
+
+# dependencies
+Gemfile.lock
+
+# OS generated files
+.DS_Store
+Thumbs.db
+

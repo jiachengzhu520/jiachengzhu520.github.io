@@ -19,20 +19,25 @@ layout: default
   <ul id="results-container"></ul>
 </div>
 
-<!--script src="https://unpkg.com/simple-jekyll-search/dest/simple-jekyll-search.min.js"></script-->
-<script src="{{ site.baseurl }}/js/simple-jekyll-search.min.js"></script>
+<!-- 优先使用本地版本 -->
+<script src="js/simple-jekyll-search.min.js"></script>
+<!-- 备用 CDN 版本 -->
+<script>if (typeof SimpleJekyllSearch === 'undefined') { var s = document.createElement('script'); s.src = 'https://unpkg.com/simple-jekyll-search@1.9.2/dest/simple-jekyll-search.min.js'; document.head.appendChild(s); }</script>
 
 <script>
-	window.simpleJekyllSearch = new SimpleJekyllSearch({
-	searchInput: document.getElementById('search-input'),
-	resultsContainer: document.getElementById('results-container'),
-	json: '{{ site.baseurl }}/search.json',
-	searchResultTemplate: '<li><a href="{url}?query={query}" title="{desc}">{title}</a></li>',
-	noResultsText: 'No results found',
-	limit: 10,
-	fuzzy: false,
-	exclude: ['Welcome']
-  })
+	// 延迟初始化搜索功能，提升页面加载速度
+	document.addEventListener('DOMContentLoaded', function() {
+		window.simpleJekyllSearch = new SimpleJekyllSearch({
+			searchInput: document.getElementById('search-input'),
+			resultsContainer: document.getElementById('results-container'),
+			json: 'search.json',
+			searchResultTemplate: '<li><a href="{url}?query={query}" title="{desc}">{title}</a></li>',
+			noResultsText: 'No results found',
+			limit: 10,
+			fuzzy: false,
+			exclude: ['Welcome']
+		});
+	});
 </script>
  
 {% if site.posts.size == 0 %}

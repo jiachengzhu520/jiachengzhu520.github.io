@@ -3,3 +3,111 @@
 {% if site.footer-text %}
 <p>{{ site.footer-text }}</p>
 {% endif %}
+
+<!-- 暗色模式切换按钮 -->
+<button class="dark-mode-toggle" id="darkModeToggle" aria-label="切换暗色模式">
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+  </svg>
+</button>
+
+<script>
+  // 图片懒加载
+  document.addEventListener('DOMContentLoaded', function() {
+    const lazyImages = [].slice.call(document.querySelectorAll('img[data-src]'));
+    
+    if ('IntersectionObserver' in window) {
+      let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            let lazyImage = entry.target;
+            lazyImage.src = lazyImage.dataset.src;
+            lazyImage.classList.remove('lazy');
+            lazyImageObserver.unobserve(lazyImage);
+          }
+        });
+      });
+      
+      lazyImages.forEach(function(lazyImage) {
+        lazyImageObserver.observe(lazyImage);
+      });
+    } else {
+      // 降级方案
+      let lazyLoadThrottleTimeout;
+      function lazyLoad() {
+        if (lazyLoadThrottleTimeout) {
+          clearTimeout(lazyLoadThrottleTimeout);
+        }
+        
+        lazyLoadThrottleTimeout = setTimeout(function() {
+          const scrollTop = window.pageYOffset;
+          lazyImages.forEach(function(img) {
+            if (img.offsetTop < window.innerHeight + scrollTop) {
+              img.src = img.dataset.src;
+              img.classList.remove('lazy');
+            }
+          });
+          if (lazyImages.length == 0) {
+            document.removeEventListener('scroll', lazyLoad);
+            window.removeEventListener('resize', lazyLoad);
+            window.removeEventListener('orientationChange', lazyLoad);
+          }
+        }, 20);
+      }
+      
+      document.addEventListener('scroll', lazyLoad);
+      window.addEventListener('resize', lazyLoad);
+      window.addEventListener('orientationChange', lazyLoad);
+    }
+    
+    // 暗色模式切换
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const htmlElement = document.documentElement;
+    
+    // 检查本地存储中的主题偏好
+    const savedTheme = localStorage.getItem('theme');
+    
+    // 初始化主题
+    if (savedTheme) {
+      htmlElement.setAttribute('data-theme', savedTheme);
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      htmlElement.setAttribute('data-theme', 'dark');
+    } else {
+      htmlElement.setAttribute('data-theme', 'light');
+    }
+    
+    // 更新切换按钮图标
+    function updateToggleIcon() {
+      const currentTheme = htmlElement.getAttribute('data-theme');
+      const svgElement = darkModeToggle.querySelector('svg');
+      
+      if (currentTheme === 'dark') {
+        svgElement.innerHTML = '<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>';
+      } else {
+        svgElement.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
+      }
+    }
+    
+    // 初始更新图标
+    updateToggleIcon();
+    
+    // 切换主题
+    darkModeToggle.addEventListener('click', function() {
+      const currentTheme = htmlElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      
+      htmlElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateToggleIcon();
+    });
+    
+    // 监听系统主题变化
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+      if (!localStorage.getItem('theme')) {
+        const newTheme = e.matches ? 'dark' : 'light';
+        htmlElement.setAttribute('data-theme', newTheme);
+        updateToggleIcon();
+      }
+    });
+  });
+</script>

@@ -88,3 +88,36 @@ $dd-position: $dt-width+$dt-dd-space;
     @content;
   }
 }
+
+// Dark mode variables
+$dark-base-color: $oc-gray-2;
+$dark-base-lighten-color: $oc-gray-4;
+$dark-base-lightener-color: $oc-gray-5;
+
+$dark-background-color: #121212;
+$dark-background-lighten-color: #1e1e1e;
+
+$dark-text-color: $oc-gray-2;
+$dark-link-color: $oc-blue-4;
+$dark-link-lighten-color: $oc-blue-3;
+$dark-link-bghv-color: rgba(30, 64, 175, 0.2);
+$dark-divider-color: $oc-gray-8;
+
+$dark-error-color: $oc-blue-4;
+
+$dark-table-border-color: $oc-gray-8;
+$dark-table-background-color: #1e1e1e;
+
+$dark-blockquote-color: $oc-gray-4;
+$dark-blockquote-border-color: $oc-gray-7;
+
+$dark-footnote-link-border-color: $oc-gray-8;
+$dark-footnote-link-background-over-color: #1e1e1e;
+
+$dark-selection-background-color: $oc-blue-6;
+
+$dark-tag-index-label-background-color: #1e1e1e;
+$dark-tag-index-count-background-color: #333;
+
+$dark-footer-border-color: $oc-gray-8;
+$dark-footer-background-color: #121212;
