@@ -8,7 +8,7 @@ layout: default
 
   <div clsss="meta">
     <span class="date">
-      {{ page.date | date: "%Y-%m-%d" }}
+      {{ page.date | date_to_xmlschema | date: "%Y-%m-%d %H:%M:%S" }}
     </span>
 
     <ul class="tag">

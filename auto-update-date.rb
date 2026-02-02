@@ -71,8 +71,28 @@ def update_date(file)
     front_matter = $1
     rest_content = $2
     
-    # 获取当前时间，精确到时分秒（不含时区）
-    current_time = Time.now.strftime('%Y-%m-%d %H:%M:%S')
+    # 手动构建带有时区信息的时间字符串
+    t = Time.now
+    year = t.year
+    month = t.month.to_s.rjust(2, '0')
+    day = t.day.to_s.rjust(2, '0')
+    hour = t.hour.to_s.rjust(2, '0')
+    min = t.min.to_s.rjust(2, '0')
+    sec = t.sec.to_s.rjust(2, '0')
+    # 计算时区偏移
+    offset = t.utc_offset / 3600
+    sign = offset >= 0 ? '+' : '-'
+    offset_hour = offset.abs.to_s.rjust(2, '0')
+    timezone = "#{sign}#{offset_hour}00"
+    
+    # 构建最终时间字符串
+    current_time = "#{year}-#{month}-#{day} #{hour}:#{min}:#{sec} #{timezone}"
+    
+    # 调试信息
+    puts "DEBUG: Current time: #{current_time}"
+    puts "DEBUG: UTC offset: #{t.utc_offset} seconds"
+    puts "DEBUG: Offset hours: #{offset}"
+    puts "DEBUG: Timezone: #{timezone}"
     
     # 更新 date 字段
     if front_matter =~ /^date:\s*.+$/m

@@ -40,6 +40,9 @@ version: v1.2.0
 # 构建未来日期的文章
 future: true
 
+# 设置时区
+timezone: Asia/Shanghai
+
 # Jekyll 3 now only supports Kramdown for Markdown
 kramdown:
   # Use GitHub flavored markdown, including triple backtick fenced code blocks
