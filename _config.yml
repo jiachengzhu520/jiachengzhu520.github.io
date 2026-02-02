@@ -37,6 +37,9 @@ paginate_path: /page:num/
 # The release of Jekyll Now
 version: v1.2.0
 
+# 构建未来日期的文章
+future: true
+
 # Jekyll 3 now only supports Kramdown for Markdown
 kramdown:
   # Use GitHub flavored markdown, including triple backtick fenced code blocks

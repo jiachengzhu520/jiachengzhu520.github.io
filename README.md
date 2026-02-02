@@ -11,3 +11,9 @@
 
 <!-- 本地跑服务  指令    -->
 /Users/wenggf/.gem/ruby/2.6.0/bin/bundle exec jekyll serve
+
+https://jiachengzhu520.github.io/tags/ //博客地址
+
+
+
+ruby auto-update-date.rb//检测md文档更新 同时 更新date
